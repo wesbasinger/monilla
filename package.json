@@ -1,0 +1,26 @@
+{
+  "name": "monilla",
+  "version": "0.1.0",
+  "description": "A tiny little app written in vanilla Javascript that is meant to emulate a one player version of Monopoly.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+	"devserver": "webpack-dev-server --port=3000 --inline=true --content-base='./public'",
+	"start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesbasinger/monilla.git"
+  },
+  "keywords": [
+    "fun",
+    "game",
+    "canvas"
+  ],
+  "author": "Wes Basinger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wesbasinger/monilla/issues"
+  },
+  "homepage": "https://github.com/wesbasinger/monilla#readme"
+}
