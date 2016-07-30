@@ -1,7 +1,9 @@
 var globals = require('./globals');
+var background = require('./background');
 const ctx = globals.ctx;
 const playerBoxPadding = globals.playerBoxPadding;
 const tileSize = globals.tileSize;
+
 
 var gameUI = {
   drawHelper: function(x, y) {
@@ -37,6 +39,18 @@ var gameUI = {
     } else if (squareNumber === 12) {
       this.drawHelper(playerBoxPadding*3/2, playerBoxPadding*3/2 + tileSize);
     }
+  },
+  animate: function(start, numMoves) {
+    var self = this;
+    var start = start
+    var interval = setInterval(function() {
+      background.draw();
+      self.drawPlayer(start);
+      start ++;
+      if (start === numMoves + 2) {
+        clearInterval(interval);
+      }
+    }, 1000);
   }
 }
 
