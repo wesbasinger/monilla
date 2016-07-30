@@ -1,10 +1,12 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+var globals = require('./globals');
 
-const tileSize = 128;
-const xPadding = 20;
-const yPadding = 25;
-const playerBoxPadding = 32;
+const canvas = globals.canvas;
+const ctx = globals.ctx;
+
+const tileSize = globals.tileSize;
+const xPadding = globals.xPadding;
+const yPadding = globals.yPadding;
+const playerBoxPadding = globals.playerBoxPadding;
 
 var background = {
   grid : [
