@@ -1,5 +1,5 @@
 var background = require('./components/background');
-var game = require('./components/game');
+var gameUI = require('./components/gameUI');
 
 background.draw();
-game.drawPlayer(12);
+gameUI.drawPlayer(12);
