@@ -2,7 +2,7 @@ var assert = require('chai').assert;
 
 var gameLogic = require('../components/gameLogic');
 
-describe('Game', function() {
+describe('Move Player', function() {
   it('should start with player position on 1', function() {
     assert.equal(gameLogic.playerPosition, 1);
   });
@@ -19,3 +19,18 @@ describe('Game', function() {
     assert.equal(gameLogic.playerPosition, 2);
   });
 });
+
+describe('Rolling', function() {
+  it('should return a number between 1 and 6', function() {
+    for (var i=0; i<25; i++) {
+      var die = gameLogic.roll();
+      assert.isAtLeast(die, 1);
+      assert.isAtMost(die, 6);
+    }
+  });
+  it('should move a player forward with turn', function() {
+    var startingPosition = gameLogic.playerPosition;
+    gameLogic.takeTurn();
+    assert.notEqual(gameLogic.playerPosition, startingPosition);
+  })
+})
