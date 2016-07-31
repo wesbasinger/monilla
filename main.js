@@ -5,6 +5,9 @@ var gameLogic = require('./components/gameLogic');
 background.draw();
 gameUI.drawPlayer(1);
 
+var currentBalance = document.getElementById('current-balance');
+currentBalance.innerText = gameLogic.balance;
+
 
 var rollButton = document.getElementById('roll-dice');
 rollButton.onclick = function(e) {
@@ -12,4 +15,5 @@ rollButton.onclick = function(e) {
   background.draw();
   var turn = gameLogic.takeTurn();
   gameUI.drawPlayer(turn);
+  currentBalance.innerText = gameLogic.balance;
 }
