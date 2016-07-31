@@ -9,7 +9,9 @@ gameUI.drawPlayer(1);
 var rollButton = document.getElementById('roll-dice');
 rollButton.onclick = function(e) {
   var start = gameLogic.playerPosition;
+  console.log("start :" + start)
   background.draw();
   var turn = gameLogic.takeTurn();
+  console.log("final: " + turn);
   gameUI.drawPlayer(turn);
 }
