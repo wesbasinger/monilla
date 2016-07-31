@@ -34,3 +34,16 @@ describe('Rolling', function() {
     assert.notEqual(gameLogic.playerPosition, startingPosition);
   })
 })
+
+describe('Balance', function() {
+  it('should start with a 1000 balance', function() {
+    var startingBalance = gameLogic.balance;
+    assert.equal(startingBalance, 1000);
+  });
+  it('should have gotten at least one payday', function() {
+    for(var i=0; i<11; i++) {
+      gameLogic.takeTurn();
+    };
+    assert.isAtLeast(gameLogic.balance, 1200);
+  })
+})
