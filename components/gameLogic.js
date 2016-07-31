@@ -10,6 +10,7 @@ var gameLogic = {
   takeTurn: function() {
     var die = this.roll();
     this.movePlayer(die);
+    return this.playerPosition;
   }
 }
 
