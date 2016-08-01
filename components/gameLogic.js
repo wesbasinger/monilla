@@ -4,6 +4,15 @@ var gameEmitter = require('./gameEmitter');
 var gameLogic = {
   playerPosition: 1,
   balance: gameData.initialBalance,
+  investment: {
+    air: 0,
+    hotel: 0,
+    land: 0,
+    house: 0,
+    sea: 0,
+    office: 0,
+    rail: 0
+  },
   movePlayer: function(numSpaces) {
     var nextPosition = (this.playerPosition + numSpaces) % 12;
     if (nextPosition === 0) {

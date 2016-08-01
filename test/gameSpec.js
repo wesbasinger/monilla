@@ -91,3 +91,27 @@ describe('Real Estate', function() {
     assert.equal(gameLogic.balance, beginningBalance);
   });
 });
+
+describe('Initial Investments', function() {
+  it('should have an initial investmet of zero in air', function() {
+    assert.equal(gameLogic.investment.air, 0);
+  });
+  it('should have an initial investmet of zero in hotel', function() {
+    assert.equal(gameLogic.investment.hotel, 0);
+  });
+  it('should have an initial investmet of zero in land', function() {
+    assert.equal(gameLogic.investment.land, 0);
+  });
+  it('should have an initial investmet of zero in house', function() {
+    assert.equal(gameLogic.investment.house, 0);
+  });
+  it('should have an initial investmet of zero in sea', function() {
+    assert.equal(gameLogic.investment.sea, 0);
+  });
+  it('should have an initial investmet of zero in office', function() {
+    assert.equal(gameLogic.investment.office, 0);
+  });
+  it('should have an initial investmet of zero in rail', function() {
+    assert.equal(gameLogic.investment.rail, 0);
+  });
+});

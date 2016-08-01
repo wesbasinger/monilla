@@ -40,4 +40,5 @@ gameEmitter.on('realEstate', function(data) {
 
 gameEmitter.on('passedGo', function() {
   gameLogic.balance += gameData.salary;
+  messages.innerText += "You passed Go!";
 })
