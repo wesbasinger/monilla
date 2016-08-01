@@ -19,5 +19,14 @@ module.exports = {
   ],
   destinations: ["Texas", "Maine"],
   initialBalance: 1000,
-  salary: 200
+  salary: 200,
+  interestRate: {
+    "air": 0.20,
+    "hotel": 0.30,
+    "land": 0.25,
+    "house": 0.10,
+    "sea": 0.15,
+    "office": 0.15,
+    "rail": 0.05
+  }
 }
