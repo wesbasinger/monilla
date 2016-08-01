@@ -1,7 +1,9 @@
-var background = require('./components/background');
+const background = require('./components/background');
+const gameData = require('./components/gameData');
 var gameUI = require('./components/gameUI');
 var gameLogic = require('./components/gameLogic');
 var gameEmitter = require('./components/gameEmitter');
+
 
 background.draw();
 gameUI.drawPlayer(1);
@@ -29,4 +31,8 @@ gameEmitter.on('communityChest', function(data) {
 gameEmitter.on('centralTransportation', function(data) {
   messages.innerText = "";
   messages.innerText = data.message;
+});
+
+gameEmitter.on('passedGo', function() {
+  gameLogic.balance += gameData.salary;
 })

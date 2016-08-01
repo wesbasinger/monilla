@@ -3,7 +3,7 @@ var gameEmitter = require('./gameEmitter');
 
 var gameLogic = {
   playerPosition: 1,
-  balance: 1000,
+  balance: gameData.initialBalance,
   movePlayer: function(numSpaces) {
     var nextPosition = (this.playerPosition + numSpaces) % 12;
     if (nextPosition === 0) {
@@ -19,7 +19,7 @@ var gameLogic = {
     var start = this.playerPosition;
     var die = this.roll();
     if (start + die >= 12) {
-      this.balance += 200;
+      gameEmitter.emit('passedGo');
     }
     this.movePlayer(die);
     if (this.playerPosition === 2 || this.playerPosition === 4 || this.playerPosition === 6 || this.playerPosition === 11) {

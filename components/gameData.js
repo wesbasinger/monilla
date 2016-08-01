@@ -17,5 +17,7 @@ module.exports = {
       "net" : 500
     }
   ],
-  destinations: ["Texas", "Maine"]
+  destinations: ["Texas", "Maine"],
+  initialBalance: 1000,
+  salary: 200
 }
