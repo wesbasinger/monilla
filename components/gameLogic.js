@@ -117,6 +117,12 @@ var gameLogic = {
   invest: function(asset, amount) {
     this.balance -= amount;
     this.investment[asset] += amount;
+  },
+  payDividends: function() {
+    var investments = Object.keys(this.investment);
+    investments.forEach(asset => {
+      this.balance += this.investment[asset] * (1 + gameData.interestRate[asset]);
+    })
   }
 }
 

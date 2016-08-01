@@ -159,4 +159,10 @@ describe('Investing', function() {
     assert.equal(gameLogic.balance, beginningBalance - 1000);
     assert.equal(gameLogic.investment.rail, 1000);
   });
+
+  it('should be able to pay dividends on investments', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.payDividends();
+    assert.isAbove(gameLogic.balance, beginningBalance);
+  })
 });
