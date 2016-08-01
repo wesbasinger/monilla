@@ -118,42 +118,49 @@ describe('Initial Investments', function() {
 
 describe('Investing', function() {
   it('should be able to invest into air account', function() {
+    gameLogic.balance = 1000;
     var beginningBalance = gameLogic.balance;
     gameLogic.invest("air", 1000);
     assert.equal(gameLogic.balance, beginningBalance - 1000);
     assert.equal(gameLogic.investment.air, 1000);
   });
   it('should be able to invest into hotel account', function() {
+    gameLogic.balance = 1000;
     var beginningBalance = gameLogic.balance;
     gameLogic.invest("hotel", 1000);
     assert.equal(gameLogic.balance, beginningBalance - 1000);
     assert.equal(gameLogic.investment.hotel, 1000);
   });
   it('should be able to invest into land account', function() {
+    gameLogic.balance = 1000;
     var beginningBalance = gameLogic.balance;
     gameLogic.invest("land", 1000);
     assert.equal(gameLogic.balance, beginningBalance - 1000);
     assert.equal(gameLogic.investment.land, 1000);
   });
   it('should be able to invest into house account', function() {
+    gameLogic.balance = 1000;
     var beginningBalance = gameLogic.balance;
     gameLogic.invest("house", 1000);
     assert.equal(gameLogic.balance, beginningBalance - 1000);
     assert.equal(gameLogic.investment.house, 1000);
   });
   it('should be able to invest into sea account', function() {
+    gameLogic.balance = 1000;
     var beginningBalance = gameLogic.balance;
     gameLogic.invest("sea", 1000);
     assert.equal(gameLogic.balance, beginningBalance - 1000);
     assert.equal(gameLogic.investment.sea, 1000);
   });
   it('should be able to invest into office account', function() {
+    gameLogic.balance = 1000;
     var beginningBalance = gameLogic.balance;
     gameLogic.invest("office", 1000);
     assert.equal(gameLogic.balance, beginningBalance - 1000);
     assert.equal(gameLogic.investment.office, 1000);
   });
   it('should be able to invest into rail account', function() {
+    gameLogic.balance = 1000;
     var beginningBalance = gameLogic.balance;
     gameLogic.invest("rail", 1000);
     assert.equal(gameLogic.balance, beginningBalance - 1000);
@@ -161,6 +168,7 @@ describe('Investing', function() {
   });
 
   it('should be able to pay dividends on investments', function() {
+    gameLogic.balance = 1000;
     var beginningBalance = gameLogic.balance;
     gameLogic.payDividends();
     assert.isAbove(gameLogic.balance, beginningBalance);
