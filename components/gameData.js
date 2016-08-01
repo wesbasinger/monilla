@@ -20,6 +20,11 @@ module.exports = {
   destinations: ["Texas", "Maine"],
   initialBalance: 1000,
   salary: 200,
+  values: {
+    "hotel" : 400000,
+    "house" : 100000,
+    "office" : 200000
+  },
   interestRate: {
     "air": 0.20,
     "hotel": 0.30,

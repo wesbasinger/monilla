@@ -129,6 +129,29 @@ var gameLogic = {
     investments.forEach(asset => {
       this.balance += this.investment[asset] * (1 + gameData.interestRate[asset]);
     })
+  },
+  checkOwned: function(square) {
+    if (square === 5) {
+      if (this.investment.hotel >= gameData.values.hotel) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (square === 8 ) {
+      if (this.investment.house >= gameData.values.house) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (square === 10) {
+      if (this.investment.office >= gameData.values.house) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 }
 

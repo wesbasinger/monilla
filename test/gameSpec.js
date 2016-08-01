@@ -174,3 +174,48 @@ describe('Investing', function() {
     assert.isAbove(gameLogic.balance, beginningBalance);
   })
 });
+
+describe('Ownership', function() {
+  it('should initally return false on all squares', function() {
+    gameLogic.investment.sea = 0;
+    gameLogic.investment.air = 0;
+    gameLogic.investment.hotel = 0;
+    gameLogic.investment.land = 0;
+    gameLogic.investment.house = 0;
+    gameLogic.investment.office = 0;
+    gameLogic.investment.rail = 0;
+    assert.equal(gameLogic.checkOwned(1), false);
+    assert.equal(gameLogic.checkOwned(2), false);
+    assert.equal(gameLogic.checkOwned(3), false);
+    assert.equal(gameLogic.checkOwned(4), false);
+    assert.equal(gameLogic.checkOwned(5), false);
+    assert.equal(gameLogic.checkOwned(6), false);
+    assert.equal(gameLogic.checkOwned(7), false);
+    assert.equal(gameLogic.checkOwned(8), false);
+    assert.equal(gameLogic.checkOwned(9), false);
+    assert.equal(gameLogic.checkOwned(10), false);
+    assert.equal(gameLogic.checkOwned(11), false);
+    assert.equal(gameLogic.checkOwned(12), false);
+  });
+  it('should then return true on ownable props', function() {
+    gameLogic.investment.sea = 1000000000000;
+    gameLogic.investment.air = 10000000000;
+    gameLogic.investment.hotel = 100000000000;
+    gameLogic.investment.land = 10000000000000;
+    gameLogic.investment.house = 1000000000000;
+    gameLogic.investment.office = 100000000000;
+    gameLogic.investment.rail = 10000000000000;
+    assert.equal(gameLogic.checkOwned(1), false);
+    assert.equal(gameLogic.checkOwned(2), false);
+    assert.equal(gameLogic.checkOwned(3), false);
+    assert.equal(gameLogic.checkOwned(4), false);
+    assert.equal(gameLogic.checkOwned(5), true);
+    assert.equal(gameLogic.checkOwned(6), false);
+    assert.equal(gameLogic.checkOwned(7), false);
+    assert.equal(gameLogic.checkOwned(8), true);
+    assert.equal(gameLogic.checkOwned(9), false);
+    assert.equal(gameLogic.checkOwned(10), true);
+    assert.equal(gameLogic.checkOwned(11), false);
+    assert.equal(gameLogic.checkOwned(12), false);
+  })
+})
