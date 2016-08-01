@@ -22,7 +22,7 @@ var gameLogic = {
       this.balance += 200;
     }
     this.movePlayer(die);
-    if (this.playerPosition === 2 || this.playerPosition === 4 || this.playerPosition === 7 || this.playerPosition === 11) {
+    if (this.playerPosition === 2 || this.playerPosition === 4 || this.playerPosition === 6 || this.playerPosition === 11) {
       this.communityChest();
     }
     return this.playerPosition;

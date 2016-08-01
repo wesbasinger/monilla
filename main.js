@@ -20,5 +20,7 @@ rollButton.onclick = function(e) {
 }
 
 gameEmitter.on('communityChest', function(data) {
-  console.log(data);
+  var messages = document.getElementById('messages');
+  messages.innerText = "";
+  messages.innerText = data.message;
 });
