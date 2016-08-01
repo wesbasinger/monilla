@@ -73,3 +73,21 @@ describe('Central Transportation', function() {
     assert.equal(gameLogic.balance, beginningBalance - 100);
   });
 });
+
+describe('Real Estate', function() {
+  it('should deduct $100 for a stay at a hotel', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.realEstate(5);
+    assert.equal(gameLogic.balance, beginningBalance - 100);
+  });
+  it('should deduct $20 for a stay in a house', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.realEstate(8);
+    assert.equal(gameLogic.balance, beginningBalance - 20);
+  });
+  it('should not deduct for an office visit', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.realEstate(10);
+    assert.equal(gameLogic.balance, beginningBalance);
+  });
+});

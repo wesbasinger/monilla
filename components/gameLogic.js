@@ -29,6 +29,10 @@ var gameLogic = {
                this.playerPosition === 9 ||
                this.playerPosition === 12) {
       this.centralTransportation(this.playerPosition);
+    } else if (this.playerPosition === 5 ||
+               this.playerPosition === 8 ||
+               this.playerPosition === 10) {
+      this.realEstate(this.playerPosition);
     }
     return this.playerPosition;
   },
@@ -39,12 +43,13 @@ var gameLogic = {
     gameEmitter.emit('communityChest', {message: card.description});
   },
   centralTransportation: function(square) {
+    var randDest = gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)];
     if (square === 3) { // air
       this.balance -= 800;
       gameEmitter.emit(
         'centralTransportation',
         {
-          message: `You bought an air ticket to ${gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)]}.  It cost $800`
+          message: `You bought an air ticket to ${randDest}.  It cost $800`
         }
       );
     } else if (square === 7) {
@@ -52,7 +57,7 @@ var gameLogic = {
       gameEmitter.emit(
         'centralTransportation',
         {
-          message: `You bought an land ticket to ${gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)]}.  It cost $50`
+          message: `You bought an land ticket to ${randDest}.  It cost $50`
         }
       );
     } else if (square === 9) {
@@ -60,7 +65,7 @@ var gameLogic = {
       gameEmitter.emit(
         'centralTransportation',
         {
-          message: `You bought an sea ticket to ${gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)]}.  It cost $400`
+          message: `You bought an sea ticket to ${randDest}.  It cost $400`
         }
       );
     } else if (square === 12) {
@@ -68,7 +73,34 @@ var gameLogic = {
       gameEmitter.emit(
         'centralTransportation',
         {
-          message: `You bought an rail ticket to ${gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)]}.  It cost $100`
+          message: `You bought an rail ticket to ${randDest}.  It cost $100`
+        }
+      );
+    }
+  },
+  realEstate: function(square) {
+    var randDest = gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)];
+    if (square === 5) {
+      this.balance -= 100;
+      gameEmitter.emit(
+        'realEstate',
+        {
+          message: `You stayed at a hotel in ${randDest}.  It cost $100.`
+        }
+      );
+    } else if (square === 8) {
+      this.balance -= 20;
+      gameEmitter.emit(
+        'realEstate',
+        {
+          message: `You stayed in a house in ${randDest}.  It cost $20`
+        }
+      );
+    } else if (square === 10) {
+      gameEmitter.emit(
+        'realEstate',
+        {
+          message: `You visited an office in ${randDest}.`
         }
       );
     }

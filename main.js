@@ -33,6 +33,11 @@ gameEmitter.on('centralTransportation', function(data) {
   messages.innerText = data.message;
 });
 
+gameEmitter.on('realEstate', function(data) {
+  messages.innerText = "";
+  messages.innerText = data.message;
+});
+
 gameEmitter.on('passedGo', function() {
   gameLogic.balance += gameData.salary;
 })
