@@ -1,4 +1,5 @@
 const communityChest = require('./communityChest');
+var gameEmitter = require('./gameEmitter');
 
 var gameLogic = {
   playerPosition: 1,
@@ -21,11 +22,16 @@ var gameLogic = {
       this.balance += 200;
     }
     this.movePlayer(die);
+    if (this.playerPosition === 2 || this.playerPosition === 4 || this.playerPosition === 7 || this.playerPosition === 11) {
+      this.communityChest();
+    }
     return this.playerPosition;
   },
-  getCommunityChest: function() {
+  communityChest: function() {
     var random = Math.floor(Math.random() * (communityChest.length - 1));
-    return communityChest[random];
+    var card = communityChest[random];
+    this.balance += card.net;
+    gameEmitter.emit('communityChest', {message: card.description});
   }
 }
 

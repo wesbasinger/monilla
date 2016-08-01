@@ -20,6 +20,13 @@ describe('Move Player', function() {
   });
 });
 
+describe('Balance', function() {
+  it('should start with a 1000 balance', function() {
+    var startingBalance = gameLogic.balance;
+    assert.equal(startingBalance, 1000);
+  });
+});
+
 describe('Rolling', function() {
   it('should return a number between 1 and 6', function() {
     for (var i=0; i<25; i++) {
@@ -35,25 +42,11 @@ describe('Rolling', function() {
   })
 })
 
-describe('Balance', function() {
-  it('should start with a 1000 balance', function() {
-    var startingBalance = gameLogic.balance;
-    assert.equal(startingBalance, 1000);
-  });
-  it('should have gotten at least one payday', function() {
-    for(var i=0; i<11; i++) {
-      gameLogic.takeTurn();
-    };
-    assert.isAtLeast(gameLogic.balance, 1200);
-  });
-});
 
 describe('Community Chest', function() {
-  it('should get a Community Chest card', function() {
-    var card = gameLogic.getCommunityChest();
-    assert.isDefined(card);
-    assert.isObject(card);
-    assert.isString(card.description);
-    assert.isNumber(card.net);
+  it('should get a execute Community Chest Function', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.communityChest();
+    assert.notEqual(beginningBalance, gameLogic.balance);
   })
 })

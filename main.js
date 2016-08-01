@@ -1,6 +1,7 @@
 var background = require('./components/background');
 var gameUI = require('./components/gameUI');
 var gameLogic = require('./components/gameLogic');
+var gameEmitter = require('./components/gameEmitter');
 
 background.draw();
 gameUI.drawPlayer(1);
@@ -17,3 +18,7 @@ rollButton.onclick = function(e) {
   gameUI.drawPlayer(turn);
   currentBalance.innerText = gameLogic.balance;
 }
+
+gameEmitter.on('communityChest', function(data) {
+  console.log(data);
+});
