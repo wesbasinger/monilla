@@ -46,29 +46,68 @@ var background = {
           helper('#FC1A4A');
           ctx.fillStyle = 'black';
           ctx.font = "20px Arial";
-          ctx.fillText("Start", tileSize*i + xPadding, tileSize*j + yPadding);
-        } else if (this.grid[i][j] === 2) {
+          ctx.fillText("Start", tileSize*i + xPadding + 20, tileSize*j + yPadding);
+          ctx.font = "10px Arial";
+          ctx.fillText("Every trip collects $200", tileSize*i + xPadding, tileSize*j + yPadding + 90)
+        } else if (this.grid[i][j] === 2 || this.grid[i][j] === 4 || this.grid[i][j] === 6 || this.grid[i][j] === 11) {
           helper('#F7B733');
+          ctx.fillStyle = 'black';
+          ctx.font = "12px Arial";
+          ctx.fillText("Community Chest", tileSize*i + xPadding, tileSize*j + yPadding - 5);
+          ctx.font = "8px Arial";
+          ctx.fillText("Could be good, could be bad :-)", tileSize*i + xPadding -13, tileSize*j + yPadding + 90)
         } else if (this.grid[i][j] === 3) {
           helper('#DFDCE3');
-        } else if (this.grid[i][j] === 4) {
-          helper('#F7B733');
+          ctx.fillStyle = 'black';
+          ctx.font = "12px Arial";
+          ctx.fillText("Central Transportation", tileSize*i + xPadding - 12, tileSize*j + yPadding - 5);
+          ctx.font = "8px Arial";
+          ctx.fillText("Air -> Ticket Cost: $800", tileSize*i + xPadding, tileSize*j + yPadding + 90)
         } else if (this.grid[i][j] === 5) {
           helper('#FC1A4A');
-        } else if (this.grid[i][j] === 6) {
-          helper('#F7B733');
+          ctx.fillStyle = 'black';
+          ctx.font = "12px Arial";
+          ctx.fillText("Real Estate", tileSize*i + xPadding + 10, tileSize*j + yPadding - 5);
+          ctx.font = "8px Arial";
+          ctx.fillText("Hotel -> Stay Price: $100", tileSize*i + xPadding, tileSize*j + yPadding + 85)
+          ctx.fillText("Hotel -> Buy Price: $400000", tileSize*i + xPadding, tileSize*j + yPadding + 95)
         } else if (this.grid[i][j] === 7) {
           helper('#DFDCE3');
+          ctx.fillStyle = 'black';
+          ctx.font = "12px Arial";
+          ctx.fillText("Central Transportation", tileSize*i + xPadding - 12, tileSize*j + yPadding - 5);
+          ctx.font = "8px Arial";
+          ctx.fillText("Land -> Ticket Cost: $50", tileSize*i + xPadding, tileSize*j + yPadding + 90)
         } else if (this.grid[i][j] === 8) {
           helper('#FC1A4A');
+          ctx.fillStyle = 'black';
+          ctx.font = "12px Arial";
+          ctx.fillText("Real Estate", tileSize*i + xPadding + 10, tileSize*j + yPadding - 5);
+          ctx.font = "8px Arial";
+          ctx.fillText("House -> Stay Price: $20", tileSize*i + xPadding, tileSize*j + yPadding + 85)
+          ctx.fillText("House -> Buy Price: $100000", tileSize*i + xPadding, tileSize*j + yPadding + 95)
         } else if (this.grid[i][j] === 9) {
           helper('#DFDCE3');
+          ctx.fillStyle = 'black';
+          ctx.font = "12px Arial";
+          ctx.fillText("Central Transportation", tileSize*i + xPadding - 12, tileSize*j + yPadding - 5);
+          ctx.font = "8px Arial";
+          ctx.fillText("Sea -> Ticket Cost: $400", tileSize*i + xPadding, tileSize*j + yPadding + 90)
         } else if (this.grid[i][j] === 10) {
           helper('#FC1A4A');
-        } else if (this.grid[i][j] === 11) {
-          helper('#F7B733');
+          ctx.fillStyle = 'black';
+          ctx.font = "12px Arial";
+          ctx.fillText("Real Estate", tileSize*i + xPadding + 10, tileSize*j + yPadding - 5);
+          ctx.font = "8px Arial";
+          ctx.fillText("Office -> Stay Price: Free", tileSize*i + xPadding, tileSize*j + yPadding + 85)
+          ctx.fillText("Office -> Buy Price: $200000", tileSize*i + xPadding, tileSize*j + yPadding + 95)
         } else if (this.grid[i][j] === 12) {
           helper('#DFDCE3');
+          ctx.fillStyle = 'black';
+          ctx.font = "12px Arial";
+          ctx.fillText("Central Transportation", tileSize*i + xPadding - 12, tileSize*j + yPadding - 5);
+          ctx.font = "8px Arial";
+          ctx.fillText("Rail -> Ticket Cost: $100", tileSize*i + xPadding, tileSize*j + yPadding + 90)
         }
       }
     }
