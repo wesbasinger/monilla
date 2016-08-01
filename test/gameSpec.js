@@ -1,6 +1,7 @@
 var assert = require('chai').assert;
 
 var gameLogic = require('../components/gameLogic');
+const gameData = require('../components/gameData')
 
 describe('Move Player', function() {
   it('should start with player position on 1', function() {
@@ -23,7 +24,7 @@ describe('Move Player', function() {
 describe('Balance', function() {
   it('should start with a 1000 balance', function() {
     var startingBalance = gameLogic.balance;
-    assert.equal(startingBalance, 1000);
+    assert.equal(startingBalance, gameData.initialBalance);
   });
 });
 
