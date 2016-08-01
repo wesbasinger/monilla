@@ -24,6 +24,11 @@ var gameLogic = {
     this.movePlayer(die);
     if (this.playerPosition === 2 || this.playerPosition === 4 || this.playerPosition === 6 || this.playerPosition === 11) {
       this.communityChest();
+    } else if (this.playerPosition === 3 ||
+               this.playerPosition === 7 ||
+               this.playerPosition === 9 ||
+               this.playerPosition === 12) {
+      this.centralTransportation(this.playerPosition);
     }
     return this.playerPosition;
   },
@@ -32,6 +37,41 @@ var gameLogic = {
     var card = gameData.communityChest[random];
     this.balance += card.net;
     gameEmitter.emit('communityChest', {message: card.description});
+  },
+  centralTransportation: function(square) {
+    if (square === 3) { // air
+      this.balance -= 800;
+      gameEmitter.emit(
+        'centralTransportation',
+        {
+          message: `You bought an air ticket to ${gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)]}.  It cost $800`
+        }
+      );
+    } else if (square === 7) {
+      this.balance -= 50;
+      gameEmitter.emit(
+        'centralTransportation',
+        {
+          message: `You bought an land ticket to ${gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)]}.  It cost $50`
+        }
+      );
+    } else if (square === 9) {
+      this.balance -= 400;
+      gameEmitter.emit(
+        'centralTransportation',
+        {
+          message: `You bought an sea ticket to ${gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)]}.  It cost $400`
+        }
+      );
+    } else if (square === 12) {
+      this.balance -= 100;
+      gameEmitter.emit(
+        'centralTransportation',
+        {
+          message: `You bought an rail ticket to ${gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)]}.  It cost $100`
+        }
+      );
+    }
   }
 }
 

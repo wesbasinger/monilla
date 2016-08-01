@@ -39,8 +39,8 @@ describe('Rolling', function() {
     var startingPosition = gameLogic.playerPosition;
     gameLogic.takeTurn();
     assert.notEqual(gameLogic.playerPosition, startingPosition);
-  })
-})
+  });
+});
 
 
 describe('Community Chest', function() {
@@ -48,5 +48,28 @@ describe('Community Chest', function() {
     var beginningBalance = gameLogic.balance;
     gameLogic.communityChest();
     assert.notEqual(beginningBalance, gameLogic.balance);
-  })
-})
+  });
+});
+
+describe('Central Transportation', function() {
+  it('should deduct $800 for air travel', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.centralTransportation(3);
+    assert.equal(gameLogic.balance, beginningBalance - 800);
+  });
+  it('should deduct $50 for land travel', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.centralTransportation(7);
+    assert.equal(gameLogic.balance, beginningBalance - 50)
+  });
+  it('should deduct $400 for sea travel', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.centralTransportation(9);
+    assert.equal(gameLogic.balance, beginningBalance - 400);
+  });
+  it('should deduct $100 for rail travel', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.centralTransportation(12);
+    assert.equal(gameLogic.balance, beginningBalance - 100);
+  });
+});

@@ -9,6 +9,8 @@ gameUI.drawPlayer(1);
 var currentBalance = document.getElementById('current-balance');
 currentBalance.innerText = gameLogic.balance;
 
+var messages = document.getElementById('messages');
+
 
 var rollButton = document.getElementById('roll-dice');
 rollButton.onclick = function(e) {
@@ -20,7 +22,11 @@ rollButton.onclick = function(e) {
 }
 
 gameEmitter.on('communityChest', function(data) {
-  var messages = document.getElementById('messages');
   messages.innerText = "";
   messages.innerText = data.message;
 });
+
+gameEmitter.on('centralTransportation', function(data) {
+  messages.innerText = "";
+  messages.innerText = data.message;
+})
