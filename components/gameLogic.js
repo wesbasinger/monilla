@@ -37,13 +37,13 @@ var gameLogic = {
                this.playerPosition === 7 ||
                this.playerPosition === 9 ||
                this.playerPosition === 12) {
-      gameEmitter.emit('investmentInterface', {property: this.playerPosition, context: 'centralTransportation'});
       this.centralTransportation(this.playerPosition);
+      gameEmitter.emit('investmentInterface', {property: this.playerPosition, context: 'centralTransportation'});
     } else if (this.playerPosition === 5 ||
                this.playerPosition === 8 ||
                this.playerPosition === 10) {
-      gameEmitter.emit('investmentInterface', {property: this.playerPosition, context: 'realEstate'});
       this.realEstate(this.playerPosition);
+      gameEmitter.emit('investmentInterface', {property: this.playerPosition, context: 'realEstate'});
     }
     return this.playerPosition;
   },
@@ -117,8 +117,12 @@ var gameLogic = {
     }
   },
   invest: function(asset, amount) {
-    this.balance -= amount;
-    this.investment[asset] += amount;
+    if (this.balance < amount) {
+      return {error: "You do not have sufficient funds."}
+    } else {
+      this.balance -= amount;
+      this.investment[asset] += amount;
+    }
   },
   payDividends: function() {
     var investments = Object.keys(this.investment);
