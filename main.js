@@ -44,5 +44,20 @@ gameEmitter.on('passedGo', function() {
 });
 
 gameEmitter.on('investmentInterface', function(data) {
-  console.log(data);
+
+  var decisionBox = document.getElementById('user-decision-box');
+  decisionBox.innerHTML = "";
+  var text = document.createElement("h1");
+  text.innerText = data.context;
+  decisionBox.appendChild(text);
+
+  var input = document.createElement("input");
+  input.setAttribute("id", "amount");
+  decisionBox.appendChild(input);
+
+  var button = document.createElement("button");
+  button.onclick = function() {
+    alert(input.value);
+  }
+  decisionBox.appendChild(button);
 })
