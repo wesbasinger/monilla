@@ -37,10 +37,12 @@ var gameLogic = {
                this.playerPosition === 7 ||
                this.playerPosition === 9 ||
                this.playerPosition === 12) {
+      gameEmitter.emit('investmentInterface', {property: this.playerPosition, context: 'centralTransportation'});
       this.centralTransportation(this.playerPosition);
     } else if (this.playerPosition === 5 ||
                this.playerPosition === 8 ||
                this.playerPosition === 10) {
+      gameEmitter.emit('investmentInterface', {property: this.playerPosition, context: 'realEstate'});
       this.realEstate(this.playerPosition);
     }
     return this.playerPosition;
