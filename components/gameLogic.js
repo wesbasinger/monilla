@@ -1,4 +1,4 @@
-const communityChest = require('./communityChest');
+const gameData = require('./gameData');
 var gameEmitter = require('./gameEmitter');
 
 var gameLogic = {
@@ -28,8 +28,8 @@ var gameLogic = {
     return this.playerPosition;
   },
   communityChest: function() {
-    var random = Math.floor(Math.random() * (communityChest.length - 1));
-    var card = communityChest[random];
+    var random = Math.floor(Math.random() * (gameData.communityChest.length - 1));
+    var card = gameData.communityChest[random];
     this.balance += card.net;
     gameEmitter.emit('communityChest', {message: card.description});
   }
