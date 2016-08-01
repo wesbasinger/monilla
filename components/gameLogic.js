@@ -113,6 +113,10 @@ var gameLogic = {
         }
       );
     }
+  },
+  invest: function(asset, amount) {
+    this.balance -= amount;
+    this.investment[asset] += amount;
   }
 }
 

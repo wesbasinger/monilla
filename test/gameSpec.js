@@ -115,3 +115,48 @@ describe('Initial Investments', function() {
     assert.equal(gameLogic.investment.rail, 0);
   });
 });
+
+describe('Investing', function() {
+  it('should be able to invest into air account', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.invest("air", 1000);
+    assert.equal(gameLogic.balance, beginningBalance - 1000);
+    assert.equal(gameLogic.investment.air, 1000);
+  });
+  it('should be able to invest into hotel account', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.invest("hotel", 1000);
+    assert.equal(gameLogic.balance, beginningBalance - 1000);
+    assert.equal(gameLogic.investment.hotel, 1000);
+  });
+  it('should be able to invest into land account', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.invest("land", 1000);
+    assert.equal(gameLogic.balance, beginningBalance - 1000);
+    assert.equal(gameLogic.investment.land, 1000);
+  });
+  it('should be able to invest into house account', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.invest("house", 1000);
+    assert.equal(gameLogic.balance, beginningBalance - 1000);
+    assert.equal(gameLogic.investment.house, 1000);
+  });
+  it('should be able to invest into sea account', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.invest("sea", 1000);
+    assert.equal(gameLogic.balance, beginningBalance - 1000);
+    assert.equal(gameLogic.investment.sea, 1000);
+  });
+  it('should be able to invest into office account', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.invest("office", 1000);
+    assert.equal(gameLogic.balance, beginningBalance - 1000);
+    assert.equal(gameLogic.investment.office, 1000);
+  });
+  it('should be able to invest into rail account', function() {
+    var beginningBalance = gameLogic.balance;
+    gameLogic.invest("rail", 1000);
+    assert.equal(gameLogic.balance, beginningBalance - 1000);
+    assert.equal(gameLogic.investment.rail, 1000);
+  });
+});
