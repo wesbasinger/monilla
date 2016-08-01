@@ -1,3 +1,5 @@
+const communityChest = require('./communityChest');
+
 var gameLogic = {
   playerPosition: 1,
   balance: 1000,
@@ -20,6 +22,10 @@ var gameLogic = {
     }
     this.movePlayer(die);
     return this.playerPosition;
+  },
+  getCommunityChest: function() {
+    var random = Math.floor(Math.random() * (communityChest.length - 1));
+    return communityChest[random];
   }
 }
 

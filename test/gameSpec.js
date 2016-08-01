@@ -45,5 +45,15 @@ describe('Balance', function() {
       gameLogic.takeTurn();
     };
     assert.isAtLeast(gameLogic.balance, 1200);
+  });
+});
+
+describe('Community Chest', function() {
+  it('should get a Community Chest card', function() {
+    var card = gameLogic.getCommunityChest();
+    assert.isDefined(card);
+    assert.isObject(card);
+    assert.isString(card.description);
+    assert.isNumber(card.net);
   })
 })
