@@ -26,6 +26,9 @@ describe('Balance', function() {
     var startingBalance = gameLogic.balance;
     assert.equal(startingBalance, gameData.initialBalance);
   });
+  it('should start with 40000 net worth', function() {
+    assert.equal(gameLogic.netWorth(), gameData.initialBalance);
+  })
 });
 
 describe('Rolling', function() {

@@ -13,6 +13,11 @@ var gameLogic = {
     office: 0,
     rail: 0
   },
+  netWorth: function() {
+    return this.balance + this.investment.air + this.investment.hotel +
+           this.investment.land + this.investment.house + this.investment.sea +
+           this.investment.office + this.investment.rail;
+  },
   movePlayer: function(numSpaces) {
     var nextPosition = (this.playerPosition + numSpaces) % 12;
     if (nextPosition === 0) {
