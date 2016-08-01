@@ -92,28 +92,40 @@ var gameLogic = {
   realEstate: function(square) {
     var randDest = gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)];
     if (square === 5) {
-      this.balance -= 100;
-      gameEmitter.emit(
-        'realEstate',
-        {
-          message: `You stayed at a hotel in ${randDest}.  It cost $100.`
-        }
-      );
+      if (this.checkOwned(square)) {
+        gameEmitter.emit('realEstate', {message: `You stayed at your hotel in ${randDest}.  It was nice!`})
+      } else {
+        this.balance -= 100;
+        gameEmitter.emit(
+          'realEstate',
+          {
+            message: `You stayed at a hotel in ${randDest}.  It cost $100.`
+          }
+        );
+      }
     } else if (square === 8) {
-      this.balance -= 20;
-      gameEmitter.emit(
-        'realEstate',
-        {
-          message: `You stayed in a house in ${randDest}.  It cost $20`
-        }
-      );
+      if (this.checkOwned(square)) {
+        gameEmitter.emit('realEstate', {message: `You stayed at your house in ${randDest}.  It was nice!`})
+      } else {
+        this.balance -= 20;
+        gameEmitter.emit(
+          'realEstate',
+          {
+            message: `You stayed in a house in ${randDest}.  It cost $20`
+          }
+        );
+      }
     } else if (square === 10) {
-      gameEmitter.emit(
-        'realEstate',
-        {
-          message: `You visited an office in ${randDest}.`
-        }
-      );
+      if (this.checkOwned(square)) {
+        gameEmitter.emit('realEstate', {message: `You visted at your office in ${randDest}.  It was nice!`})
+      } else {
+        gameEmitter.emit(
+          'realEstate',
+          {
+            message: `You visited an office in ${randDest}.`
+          }
+        );
+      }
     }
   },
   invest: function(asset, amount) {
