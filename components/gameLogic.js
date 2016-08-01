@@ -45,6 +45,9 @@ var gameLogic = {
       this.realEstate(this.playerPosition);
       gameEmitter.emit('investmentInterface', {property: this.playerPosition, context: 'realEstate'});
     }
+    if (this.balance >= gameData.winningBalance) {
+      gameEmitter.emit('gameWon');
+    }
     return this.playerPosition;
   },
   communityChest: function() {
@@ -139,7 +142,7 @@ var gameLogic = {
   payDividends: function() {
     var investments = Object.keys(this.investment);
     investments.forEach(asset => {
-      this.balance += this.investment[asset] * (1 + gameData.interestRate[asset]);
+      this.balance += this.investment[asset] * (gameData.interestRate[asset]);
     })
   },
   checkOwned: function(square) {

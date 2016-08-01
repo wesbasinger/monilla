@@ -45,5 +45,6 @@ module.exports = {
     "sea": 0.15,
     "office": 0.15,
     "rail": 0.05
-  }
+  },
+  winningBalance : 1000000
 }

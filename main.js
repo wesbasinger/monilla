@@ -96,3 +96,10 @@ gameEmitter.on('investmentInterface', function(data) {
   }
   decisionBox.appendChild(button);
 })
+
+gameEmitter.on('gameWon', function() {
+  rollButton.style.visibility = "hidden";
+  decisionBox.innerHTML = null;
+  messages.innerHTML = "";
+  messages.innerText = "You win!  Game over.  Congrats on making it millionaire status."
+})
