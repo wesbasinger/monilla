@@ -9,7 +9,9 @@ background.draw();
 gameUI.drawPlayer(1);
 
 var currentBalance = document.getElementById('current-balance');
-currentBalance.innerText = gameLogic.balance;
+currentBalance.innerText = gameLogic.balance.toFixed(2).replace(/./g, function(c, i, a) {
+    return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+});
 
 var messages = document.getElementById('messages');
 var decisionBox = document.getElementById('user-decision-box');
@@ -21,7 +23,9 @@ rollButton.onclick = function(e) {
   background.draw();
   var turn = gameLogic.takeTurn();
   gameUI.drawPlayer(turn);
-  currentBalance.innerText = gameLogic.balance;
+  currentBalance.innerText = gameLogic.balance.toFixed(2).replace(/./g, function(c, i, a) {
+      return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+  });
 }
 
 gameEmitter.on('communityChest', function(data) {
@@ -43,6 +47,8 @@ gameEmitter.on('realEstate', function(data) {
 gameEmitter.on('passedGo', function() {
   gameLogic.balance += gameData.salary;
   gameLogic.payDividends();
+  gameEmitter.emit('updateFinancials');
+  messages.innerText = ""
   messages.innerText += "You passed Go!";
 });
 
@@ -89,8 +95,8 @@ gameEmitter.on('investmentInterface', function(data) {
     } else {
       text.innerText = "";
       text.innerText = "Investment was successful!"
-      input.setAttribute("visibility", "hidden");
-      button.setAttribute("visibility", "hidden");
+      input.style.visibility = 'hidden';
+      button.style.visibility = "hidden";
     }
 
   }
@@ -102,4 +108,16 @@ gameEmitter.on('gameWon', function() {
   decisionBox.innerHTML = null;
   messages.innerHTML = "";
   messages.innerText = "You win!  Game over.  Congrats on making it millionaire status."
+});
+
+gameEmitter.on('updateFinancials', function() {
+  currentBalance.innerText = "";
+  currentBalance.innerText = gameLogic.balance.toFixed(2).replace(/./g, function(c, i, a) {
+      return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+  });
+  var net = document.getElementById('net-worth');
+  net.innerText = "";
+  net.innerText = gameLogic.netWorth().toFixed(2).replace(/./g, function(c, i, a) {
+      return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+  });
 })

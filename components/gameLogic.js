@@ -14,9 +14,9 @@ var gameLogic = {
     rail: 0
   },
   netWorth: function() {
-    return this.balance + this.investment.air + this.investment.hotel +
-           this.investment.land + this.investment.house + this.investment.sea +
-           this.investment.office + this.investment.rail;
+    return parseInt(this.balance) + parseInt(this.investment.air) + parseInt(this.investment.hotel) +
+           parseInt(this.investment.land) + parseInt(this.investment.house) + parseInt(this.investment.sea) +
+           parseInt(this.investment.office) + parseInt(this.investment.rail);
   },
   movePlayer: function(numSpaces) {
     var nextPosition = (this.playerPosition + numSpaces) % 12;
@@ -34,6 +34,7 @@ var gameLogic = {
     var die = this.roll();
     if (start + die >= 12) {
       gameEmitter.emit('passedGo');
+      gameEmitter.emit('updateFinancials');
     }
     this.movePlayer(die);
     if (this.playerPosition === 2 || this.playerPosition === 4 || this.playerPosition === 6 || this.playerPosition === 11) {
@@ -50,7 +51,7 @@ var gameLogic = {
       this.realEstate(this.playerPosition);
       gameEmitter.emit('investmentInterface', {property: this.playerPosition, context: 'realEstate'});
     }
-    if (this.balance >= gameData.winningBalance) {
+    if (this.netWorth() >= gameData.winningBalance) {
       gameEmitter.emit('gameWon');
     }
     return this.playerPosition;
@@ -59,6 +60,7 @@ var gameLogic = {
     var random = Math.floor(Math.random() * (gameData.communityChest.length - 1));
     var card = gameData.communityChest[random];
     this.balance += card.net;
+    gameEmitter.emit('updateFinancials');
     gameEmitter.emit('communityChest', {message: card.description});
   },
   centralTransportation: function(square) {
@@ -96,6 +98,7 @@ var gameLogic = {
         }
       );
     }
+    gameEmitter.emit('updateFinancials');
   },
   realEstate: function(square) {
     var randDest = gameData.destinations[Math.floor(Math.random() * gameData.destinations.length)];
@@ -110,6 +113,7 @@ var gameLogic = {
             message: `You stayed at a hotel in ${randDest}.  It cost $100.`
           }
         );
+        gameEmitter.emit('updateFinancials');
       }
     } else if (square === 8) {
       if (this.checkOwned(square)) {
@@ -122,6 +126,7 @@ var gameLogic = {
             message: `You stayed in a house in ${randDest}.  It cost $20`
           }
         );
+        gameEmitter.emit('updateFinancials');
       }
     } else if (square === 10) {
       if (this.checkOwned(square)) {
@@ -142,13 +147,15 @@ var gameLogic = {
     } else {
       this.balance -= amount;
       this.investment[asset] += amount;
+      gameEmitter.emit('updateFinancials');
     }
   },
   payDividends: function() {
     var investments = Object.keys(this.investment);
     investments.forEach(asset => {
       this.balance += this.investment[asset] * (gameData.interestRate[asset]);
-    })
+    });
+    gameEmitter.emit('updateFinancials');
   },
   checkOwned: function(square) {
     if (square === 5) {
