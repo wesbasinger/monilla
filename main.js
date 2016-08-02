@@ -8,6 +8,21 @@ var gameEmitter = require('./components/gameEmitter');
 background.draw();
 gameUI.drawPlayer(1);
 
+var   seaRate = document.getElementById('sea-rate'),
+      landRate = document.getElementById('land-rate'),
+      airRate = document.getElementById('air-rate'),
+      railRate = document.getElementById('rail-rate'),
+      hotelRate = document.getElementById('hotel-rate'),
+      houseRate = document.getElementById('house-rate'),
+      officeRate = document.getElementById('office-rate');
+seaRate.innerText = gameData.interestRate["sea"];
+landRate.innerText = gameData.interestRate["land"];
+airRate.innerText = gameData.interestRate["air"];
+railRate.innerText = gameData.interestRate["rail"];
+hotelRate.innerText = gameData.interestRate["hotel"];
+houseRate.innerText = gameData.interestRate["house"];
+officeRate.innerText = gameData.interestRate["office"];
+
 var currentBalance = document.getElementById('current-balance');
 currentBalance.innerText = gameLogic.balance.toFixed(2).replace(/./g, function(c, i, a) {
     return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
@@ -54,7 +69,7 @@ gameEmitter.on('passedGo', function() {
 
 gameEmitter.on('investmentInterface', function(data) {
   decisionBox.innerHTML = "";
-  var text = document.createElement("h1");
+  var text = document.createElement("p");
   if (data.context === "realEstate") {
     text.innerText = "Would you like to invest in real estate?  If so, put a number in the box and confirm."
   } else if (data.context === "centralTransportation") {
@@ -120,4 +135,25 @@ gameEmitter.on('updateFinancials', function() {
   net.innerText = gameLogic.netWorth().toFixed(2).replace(/./g, function(c, i, a) {
       return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
   });
+  var seaAmount = document.getElementById('sea-amount'),
+      landAmount = document.getElementById('land-amount'),
+      airAmount = document.getElementById('air-amount'),
+      railAmount = document.getElementById('rail-amount'),
+      hotelAmount = document.getElementById('hotel-amount'),
+      houseAmount = document.getElementById('house-amount'),
+      officeAmount = document.getElementById('office-amount');
+  seaAmount.innerText = "";
+  seaAmount.innerText = gameLogic.investment.sea;
+  landAmount.innerText = "";
+  landAmount.innerText = gameLogic.investment.land;
+  airAmount.innerText = "";
+  airAmount.innerText = gameLogic.investment.air;
+  railAmount.innerText = "";
+  railAmount.innerText = gameLogic.investment.rail;
+  hotelAmount.innerText = "";
+  hotelAmount.innerText = gameLogic.investment.hotel;
+  houseAmount.innerText = "";
+  houseAmount.innerText = gameLogic.investment.house;
+  officeAmount.innerText = "";
+  officeAmount.innerText = gameLogic.investment.office;
 })

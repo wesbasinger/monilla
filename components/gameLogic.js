@@ -14,9 +14,9 @@ var gameLogic = {
     rail: 0
   },
   netWorth: function() {
-    return parseInt(this.balance) + parseInt(this.investment.air) + parseInt(this.investment.hotel) +
-           parseInt(this.investment.land) + parseInt(this.investment.house) + parseInt(this.investment.sea) +
-           parseInt(this.investment.office) + parseInt(this.investment.rail);
+    return this.balance + this.investment.air + this.investment.hotel +
+           this.investment.land + this.investment.house + this.investment.sea +
+           this.investment.office + this.investment.rail;
   },
   movePlayer: function(numSpaces) {
     var nextPosition = (this.playerPosition + numSpaces) % 12;
@@ -146,7 +146,7 @@ var gameLogic = {
       return {error: "You do not have sufficient funds."}
     } else {
       this.balance -= amount;
-      this.investment[asset] += amount;
+      this.investment[asset] += parseInt(amount);
       gameEmitter.emit('updateFinancials');
     }
   },
